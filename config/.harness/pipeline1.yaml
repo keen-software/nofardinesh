@@ -20,7 +20,7 @@ pipeline:
                                 identifier: echo
                                 spec:
                                     connectorRef: harnessImage
-                                    image: alpine
+                                    image: <+input>
                                     command: echo 'test git exp'
                                     privileged: false
                   serviceDependencies: []
