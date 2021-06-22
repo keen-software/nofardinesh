@@ -28,4 +28,4 @@ pipeline:
                       type: KubernetesDirect
                       spec:
                           connectorRef: account.ciproductk8s
-                          namespace: nofar
+                          namespace: harness-delegate-gitexptest
