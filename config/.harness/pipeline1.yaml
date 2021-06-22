@@ -21,7 +21,7 @@ pipeline:
                                 spec:
                                     connectorRef: harnessImage
                                     image: <+input>
-                                    command: echo 'test git.  exp. '
+                                    command: echo 'test git.    exp. '
                                     privileged: false
                   serviceDependencies: []
                   infrastructure:
