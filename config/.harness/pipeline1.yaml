@@ -23,6 +23,19 @@ pipeline:
                                     image: <+input>
                                     command: echo 'test git.      exp. '
                                     privileged: false
+                                failureStrategies:
+                                    - onFailure:
+                                          errors:
+                                              - Unknown
+                                          action:
+                                              type: Retry
+                                              spec:
+                                                  retryCount: 3
+                                                  retryIntervals:
+                                                      - 1s
+                                                  onRetryFailure:
+                                                      action:
+                                                          type: Abort
                   serviceDependencies: []
                   infrastructure:
                       type: KubernetesDirect
