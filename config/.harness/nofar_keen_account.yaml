@@ -1,0 +1,21 @@
+connector:
+  name: nofar keen account
+  identifier: nofar_keen_account
+  description:
+  orgIdentifier: default
+  projectIdentifier: nofar_dinesh
+  type: Github
+  spec:
+    url: https://github.com/keen-software
+    authentication:
+      type: Http
+      spec:
+        type: UsernamePassword
+        spec:
+          username: nofarb
+          passwordRef: nofar_github_token
+    apiAccess:
+      type: Token
+      spec:
+        tokenRef: nofar_github_token
+    type: Account
