@@ -21,9 +21,7 @@ pipeline:
                                 spec:
                                     connectorRef: harnessImage
                                     image: <+input>
-                                    command: |-
-                                        echo 'test git.      exp. '
-                                        mvn whateven
+                                    command: <+input>
                                     privileged: false
                                 failureStrategies:
                                     - onFailure:
