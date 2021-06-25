@@ -1,0 +1,44 @@
+pipeline:
+    name: pipeline2
+    identifier: pipeline2
+    projectIdentifier: nofar_dinesh
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: S1
+              identifier: S1
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: false
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: echo
+                                identifier: echo
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: <+input>
+                                    command: echo "hey"
+                                    privileged: false
+                                failureStrategies:
+                                    - onFailure:
+                                          errors:
+                                              - Unknown
+                                          action:
+                                              type: Retry
+                                              spec:
+                                                  retryCount: 3
+                                                  retryIntervals:
+                                                      - 1s
+                                                  onRetryFailure:
+                                                      action:
+                                                          type: Abort
+                  serviceDependencies: []
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: account.ciproductk8s
+                          namespace: harness-delegate-gitexptest
