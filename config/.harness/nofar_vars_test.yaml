@@ -15,18 +15,18 @@ pipeline:
                       steps:
                           - step:
                                 type: Run
-                                name: s1 echo hello
+                                name: step wil fail
                                 identifier: show_workspace_content
                                 spec:
                                     connectorRef: account.nofar_dockerhub
                                     image: alpine
-                                    command: echo "hello"
+                                    command: mvn nomaven
                                     privileged: false
                           - parallel:
                                 - step:
                                       type: Run
-                                      name: S2 echo hello
-                                      identifier: S2_echo_hello
+                                      name: run on failure
+                                      identifier: run_on_failure
                                       spec:
                                           connectorRef: harnessImage
                                           image: alpine
@@ -34,7 +34,7 @@ pipeline:
                                           privileged: false
                                       when:
                                           stageStatus: Failure
-                                          condition: <+execution.steps.show_workspace_content.status> == 'failed'
+                                          condition: <+execution.steps.show_workspace_content.status> == 'FAILED'
                                 - step:
                                       type: Run
                                       name: S3
