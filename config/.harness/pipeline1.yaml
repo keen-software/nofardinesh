@@ -21,7 +21,7 @@ pipeline:
                                 spec:
                                     connectorRef: harnessImage
                                     image: <+input>
-                                    command: <+input>
+                                    command: echo "hey"
                                     privileged: false
                                 failureStrategies:
                                     - onFailure:
