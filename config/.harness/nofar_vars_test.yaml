@@ -1,0 +1,56 @@
+pipeline:
+    name: nofar vars test
+    identifier: nofar_vars_test
+    projectIdentifier: nofar_dinesh
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: Build Test and Push
+              identifier: Test_Build_and_Push
+              type: CI
+              spec:
+                  cloneCodebase: false
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: s1 echo hello
+                                identifier: show_workspace_content
+                                spec:
+                                    connectorRef: account.nofar_dockerhub
+                                    image: alpine
+                                    command: echo "hello"
+                                    privileged: false
+                          - parallel:
+                                - step:
+                                      type: Run
+                                      name: S2 echo hello
+                                      identifier: S2_echo_hello
+                                      spec:
+                                          connectorRef: harnessImage
+                                          image: alpine
+                                          command: echo "hello"
+                                          privileged: false
+                                      when:
+                                          stageStatus: Failure
+                                          condition: <+execution.steps.show_workspace_content.status> == 'failed'
+                                - step:
+                                      type: Run
+                                      name: S3
+                                      identifier: S3
+                                      spec:
+                                          connectorRef: harnessImage
+                                          image: alpine
+                                          command: echo <+execution.steps.show_workspace_content.status>
+                                          privileged: false
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: account.pmdemonofar
+                          namespace: harness-delegate-pm
+                  serviceDependencies: []
+              variables:
+                  - name: myStageVar
+                    type: String
+                    value: stageVarValue
