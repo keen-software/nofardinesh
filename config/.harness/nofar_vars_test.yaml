@@ -21,7 +21,6 @@ pipeline:
                                     connectorRef: account.nofar_dockerhub
                                     image: alpine
                                     command: mvn nomaven
-                                    privileged: false
                           - parallel:
                                 - step:
                                       type: Run
@@ -31,7 +30,6 @@ pipeline:
                                           connectorRef: harnessImage
                                           image: alpine
                                           command: echo "hello"
-                                          privileged: false
                                       when:
                                           stageStatus: Failure
                                           condition: <+execution.steps.show_workspace_content.status> == 'FAILED'
@@ -43,7 +41,6 @@ pipeline:
                                           connectorRef: harnessImage
                                           image: alpine
                                           command: echo <+execution.steps.show_workspace_content.status>
-                                          privileged: false
                   infrastructure:
                       type: KubernetesDirect
                       spec:
