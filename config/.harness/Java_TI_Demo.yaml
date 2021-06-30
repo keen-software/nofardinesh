@@ -52,6 +52,17 @@ pipeline:
                                     tags:
                                         - <+pipeline.sequenceId>
                                     optimize: true
+                          - step:
+                                type: Run
+                                name: Create Ticket
+                                identifier: Create_Ticket
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: alpine
+                                    command: echo "creating ticket"
+                                    privileged: false
+                                when:
+                                    stageStatus: Failure
                   infrastructure:
                       type: KubernetesDirect
                       spec:
