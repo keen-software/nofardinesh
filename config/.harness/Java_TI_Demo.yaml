@@ -25,7 +25,7 @@ pipeline:
                                 name: runTestsWithIntelligence
                                 identifier: runTestsWithIntelligence
                                 spec:
-                                    connectorRef: account.nofar_dockerhub
+                                    connectorRef: harnessImage
                                     image: maven:3.5.2-jdk-8-alpine
                                     args: test
                                     buildTool: maven
@@ -51,6 +51,7 @@ pipeline:
                                     repo: bluebbb/javademo
                                     tags:
                                         - <+pipeline.sequenceId>
+                                    optimize: true
                   infrastructure:
                       type: KubernetesDirect
                       spec:
