@@ -26,9 +26,68 @@ pipeline:
                                     language: java
                                     packages: "*.io"
                                     runOnlySelectedTests: true
+                          - step:
+                                type: Run
+                                name: Create ticket if tests fail
+                                identifier: Create_ticket_if_tests_fail
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: jiracli
+                                    command: some integration
+                                    privileged: false
+                                when:
+                                    stageStatus: Failure
                   serviceDependencies: []
                   infrastructure:
                       type: KubernetesDirect
                       spec:
                           connectorRef: account.ciproductk8s
                           namespace: product
+        - stage:
+              name: build and push
+              identifier: build_and_push
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: false
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: wds
+                                identifier: wds
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: sdasd
+                                    command: asdasd
+                                    privileged: false
+                                description: asd
+                  serviceDependencies: []
+                  infrastructure:
+                      useFromStage: Test_Code
+        - stage:
+              name: run integration tests
+              identifier: run_integration_tests
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: false
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: fdfwe
+                                identifier: fdfwe
+                                spec:
+                                    connectorRef: account.t_rretwert_t_rtwertwre
+                                    image: sdfsdf
+                                    command: sdfsdf
+                                    privileged: false
+                  serviceDependencies: []
+                  infrastructure:
+                      useFromStage: Test_Code
+    properties:
+        ci:
+            codebase:
+                connectorRef: nofardinesh_git_repo
+                build: <+input>
