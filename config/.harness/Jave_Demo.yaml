@@ -22,8 +22,8 @@ pipeline:
                           - step:
                                 type: RunTests
                                 timeout: 2h
-                                name: runTestsWithIntelligence
-                                identifier: runTestsWithIntelligence
+                                name: Run Tests With Tests Intelligence
+                                identifier: Run_Tests_With_Tests_Intelligence
                                 spec:
                                     connectorRef: account.nofar_dockerhub
                                     image: maven:3.5.2-jdk-8-alpine
