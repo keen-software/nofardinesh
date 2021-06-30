@@ -1,0 +1,34 @@
+pipeline:
+    name: Logs Service
+    identifier: Logs_Service
+    projectIdentifier: nofar_dinesh
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: Test Code
+              identifier: Test_Code
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: false
+                  execution:
+                      steps:
+                          - step:
+                                type: RunTests
+                                name: Run Tests
+                                identifier: Run_Tests
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: maven:3.6.3
+                                    args: some args
+                                    buildTool: maven
+                                    language: java
+                                    packages: "*.io"
+                                    runOnlySelectedTests: true
+                  serviceDependencies: []
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: account.ciproductk8s
+                          namespace: product
