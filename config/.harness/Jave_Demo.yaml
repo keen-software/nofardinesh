@@ -51,6 +51,17 @@ pipeline:
                                     repo: bluebbb/javademo
                                     tags:
                                         - <+pipeline.sequenceId>
+                          - step:
+                                type: Run
+                                name: Create Ticket
+                                identifier: Create_Ticket
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: alpine
+                                    command: echo "jira"
+                                    privileged: false
+                                when:
+                                    stageStatus: Failure
                   infrastructure:
                       type: KubernetesDirect
                       spec:
