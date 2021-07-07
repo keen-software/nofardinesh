@@ -46,6 +46,15 @@ pipeline:
                                           connectorRef: account.nofar_dockerhub
                                           image: alpine
                                           command: ls
+                          - step:
+                                type: Run
+                                name: echo
+                                identifier: echo
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: <+input>
+                                    command: echo "hello"
+                                    privileged: false
                   infrastructure:
                       type: KubernetesDirect
                       spec:
