@@ -13,6 +13,7 @@ pipeline:
                           - step:
                                 type: Run
                                 name: Run Unit Tests
+                                description: hello
                                 identifier: Run_Unit_Tests
                                 spec:
                                     connectorRef: account.nofar_dockerhub
@@ -46,6 +47,15 @@ pipeline:
                                           connectorRef: account.nofar_dockerhub
                                           image: alpine
                                           command: ls
+                          - step:
+                                type: Run
+                                name: echo
+                                identifier: echo
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: alpine
+                                    command: echo "hellp"
+                                    privileged: false
                   infrastructure:
                       type: KubernetesDirect
                       spec:
@@ -88,6 +98,7 @@ pipeline:
                   sharedPaths:
                       - ""
               description: running integ tests
+              tags: {}
     properties:
         ci:
             codebase:
