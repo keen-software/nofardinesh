@@ -58,6 +58,9 @@ pipeline:
                   - name: myStageVar
                     type: String
                     value: stageVarValue
+                  - name: nofar_stage_var2
+                    type: String
+                    value: ""
         - stage:
               name: Run Integration Test
               identifier: Run_Integration_Test
@@ -88,6 +91,13 @@ pipeline:
                   sharedPaths:
                       - ""
               description: running integ tests
+              when:
+                  pipelineStatus: Success
+                  condition: <+Run_Integration_Test.variables.nofar_stage_var>
+              variables:
+                  - name: nofar_stage_var
+                    type: String
+                    value: ""
     properties:
         ci:
             codebase:
