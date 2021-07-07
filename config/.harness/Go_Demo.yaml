@@ -91,8 +91,8 @@ pipeline:
     properties:
         ci:
             codebase:
-                connectorRef: test
-                repoName: test
+                connectorRef: nofar_keen_account
+                repoName: goHelloWorldServer
                 build: <+input>
     variables:
         - name: pipelineVar
