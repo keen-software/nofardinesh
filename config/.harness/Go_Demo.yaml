@@ -107,5 +107,8 @@ pipeline:
         - name: pipelineVar
           type: String
           value: pipelineVarValue
+        - name: nofar_pipeline_var
+          type: String
+          value: <+input>
     projectIdentifier: nofar_dinesh
     orgIdentifier: default
