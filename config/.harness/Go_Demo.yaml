@@ -76,6 +76,15 @@ pipeline:
                                     command: |-
                                         sleep 5
                                         curl localhost:8080
+                          - step:
+                                type: Run
+                                name: echo
+                                identifier: echo
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: <+input>
+                                    command: echo "hello"
+                                    privileged: false
                   serviceDependencies:
                       - identifier: runhelloworldserver
                         name: Run Hello World Server
