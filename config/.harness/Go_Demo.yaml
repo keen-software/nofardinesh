@@ -49,8 +49,8 @@ pipeline:
                   infrastructure:
                       type: KubernetesDirect
                       spec:
-                          connectorRef: account.pmdemonofar
-                          namespace: harness-delegate
+                          connectorRef: account.ciproductk8s
+                          namespace: harness-delegate-gitexptest
                   serviceDependencies: []
                   sharedPaths:
                       - ""
