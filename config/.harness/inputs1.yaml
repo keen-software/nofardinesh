@@ -1,0 +1,26 @@
+inputSet:
+  identifier: "inputs1"
+  name: "inputs1"
+  orgIdentifier: "default"
+  projectIdentifier: "nofar_dinesh"
+  pipeline:
+    identifier: "Go_Demo"
+    stages:
+    - stage:
+        identifier: "Run_Integration_Test"
+        type: "CI"
+        spec:
+          execution:
+            steps:
+            - step:
+                identifier: "echo"
+                type: "Run"
+                spec:
+                  image: "alpine"
+    properties:
+      ci:
+        codebase:
+          build:
+            type: "branch"
+            spec:
+              branch: "main"
