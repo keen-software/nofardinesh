@@ -1,0 +1,31 @@
+pipeline:
+    name: pipeline1
+    identifier: pipeline1
+    projectIdentifier: nofar_dinesh
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: S1
+              identifier: S1
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: false
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: echo
+                                identifier: echo
+                                spec:
+                                    connectorRef: harnessImage
+                                    image: <+input>
+                                    command: echo 'test git.  exp. '
+                                    privileged: false
+                  serviceDependencies: []
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: account.ciproductk8s
+                          namespace: harness-delegate-gitexptest
