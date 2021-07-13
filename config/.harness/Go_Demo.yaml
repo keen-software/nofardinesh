@@ -12,6 +12,7 @@ pipeline:
                       steps:
                           - step:
                                 type: Run
+                                timeout: 1h
                                 name: Run Unit Tests
                                 identifier: Run_Unit_Tests
                                 spec:
