@@ -1,0 +1,19 @@
+inputSet:
+  identifier: "is1"
+  name: "is1"
+  orgIdentifier: "default"
+  projectIdentifier: "nofar_dinesh"
+  pipeline:
+    identifier: "pipeline1"
+    stages:
+    - stage:
+        identifier: "S1"
+        type: "CI"
+        spec:
+          execution:
+            steps:
+            - step:
+                identifier: "echo"
+                type: "Run"
+                spec:
+                  image: "alpine"
