@@ -3,8 +3,8 @@ pipeline:
     identifier: Go_Demo
     stages:
         - stage:
-              name: Build Test and Push
-              identifier: Test_Build_and_Push
+              name: Build Test and Push2
+              identifier: Test_Build_and_Push2
               type: CI
               spec:
                   cloneCodebase: true
@@ -86,15 +86,6 @@ pipeline:
                                     command: |-
                                         sleep 5
                                         curl localhost:8080
-                          - step:
-                                type: Run
-                                name: echo
-                                identifier: echo
-                                spec:
-                                    connectorRef: harnessImage
-                                    image: <+input>
-                                    command: echo "hello"
-                                    privileged: false
                   serviceDependencies:
                       - identifier: runhelloworldserver
                         name: Run Hello World Server
@@ -118,8 +109,5 @@ pipeline:
         - name: pipelineVar
           type: String
           value: pipelineVarValue
-        - name: nofar_pipeline_var
-          type: String
-          value: <+input>
     projectIdentifier: nofar_dinesh
     orgIdentifier: default
